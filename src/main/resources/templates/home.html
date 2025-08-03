@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Student Management System</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-graduation-cap"></i>
+                <span>EduManage</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="hero-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    Welcome to the Future of
+                    <span class="gradient-text">Student Management</span>
+                </h1>
+                <p class="hero-description">
+                    Streamline your educational processes with our comprehensive, intuitive platform designed for modern institutions.
+                </p>
+                
+                <div class="hero-actions">
+                    <a th:href="@{/login}" class="btn btn-primary">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login to Dashboard
+                    </a>
+                    <a th:href="@{/register}" class="btn btn-secondary">
+                        <i class="fas fa-user-plus"></i>
+                        Create Account
+                    </a>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">10K+</div>
+                        <div class="stat-label">Students Managed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Institutions</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">99.9%</div>
+                        <div class="stat-label">Uptime</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="dashboard-preview">
+                    <div class="preview-header">
+                        <div class="preview-controls">
+                            <span class="control red"></span>
+                            <span class="control yellow"></span>
+                            <span class="control green"></span>
+                        </div>
+                    </div>
+                    <div class="preview-content">
+                        <div class="preview-sidebar">
+                            <div class="sidebar-item active"></div>
+                            <div class="sidebar-item"></div>
+                            <div class="sidebar-item"></div>
+                            <div class="sidebar-item"></div>
+                        </div>
+                        <div class="preview-main">
+                            <div class="main-header"></div>
+                            <div class="main-cards">
+                                <div class="card-item"></div>
+                                <div class="card-item"></div>
+                                <div class="card-item"></div>
+                            </div>
+                            <div class="main-table">
+                                <div class="table-row"></div>
+                                <div class="table-row"></div>
+                                <div class="table-row"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Powerful Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Student Management</h3>
+                    <p>Comprehensive student profiles, enrollment tracking, and academic progress monitoring.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Analytics & Reports</h3>
+                    <p>Real-time insights and detailed reports to make data-driven decisions.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure & Reliable</h3>
+                    <p>Enterprise-grade security with 99.9% uptime and data protection.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>EduManage</span>
+                </div>
+                <p>&copy; 2025 Student Management System. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Add smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Animate stats on scroll
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stat-item, .feature-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

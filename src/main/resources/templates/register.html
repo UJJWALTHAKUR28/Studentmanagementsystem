@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Student Management System</title>
+    <link rel="stylesheet" th:href="@{/css/style2.css}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="background-animation">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+        <div class="floating-shape shape-4"></div>
+        <div class="floating-shape shape-5"></div>
+    </div>
+
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-brand">
+                <i class="fas fa-graduation-cap"></i>
+                <span>EduManage</span>
+            </a>
+            <div class="nav-links">
+                <a th:href="@{/}" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+                <a th:href="@{/login}" class="nav-link">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Login
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="register-container">
+            <!-- Left Side - Welcome Section -->
+            <div class="welcome-section">
+                <div class="welcome-content">
+                    <div class="welcome-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h1 class="welcome-title">Join Our Community</h1>
+                    <p class="welcome-description">
+                        Create your account and unlock access to our comprehensive student management platform. 
+                        Experience seamless learning and administration.
+                    </p>
+                    
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Comprehensive Dashboard</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Real-time Analytics</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Secure Data Management</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>24/7 Support</span>
+                        </div>
+                    </div>
+
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <i class="fas fa-quote-left"></i>
+                            <p>"This platform has revolutionized how we manage our students. Highly recommended!"</p>
+                            <div class="testimonial-author">
+                                <strong>Dr. Sarah Johnson</strong>
+                                <span>Academic Director</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side - Registration Form -->
+            <div class="form-section">
+                <div class="form-container">
+                    <div class="form-header">
+                        <h2 class="form-title">Create Account</h2>
+                        <p class="form-subtitle">Fill in your details to get started</p>
+                    </div>
+
+                    <form th:action="@{/register}" method="post" class="register-form" id="registerForm">
+                        <div class="form-group">
+                            <label for="name" class="form-label">
+                                <i class="fas fa-user"></i>
+                                Full Name
+                            </label>
+                            <input 
+                                type="text" 
+                                id="name"
+                                name="name" 
+                                class="form-input" 
+                                placeholder="Enter your full name" 
+                                required 
+                            />
+                            <div class="input-feedback"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">
+                                <i class="fas fa-envelope"></i>
+                                Email Address
+                            </label>
+                            <input 
+                                type="email" 
+                                id="email"
+                                name="email" 
+                                class="form-input" 
+                                placeholder="Enter your email address" 
+                                required 
+                            />
+                            <div class="input-feedback"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password" class="form-label">
+                                <i class="fas fa-lock"></i>
+                                Password
+                            </label>
+                            <div class="password-input-wrapper">
+                                <input 
+                                    type="password" 
+                                    id="password"
+                                    name="password" 
+                                    class="form-input" 
+                                    placeholder="Create a strong password" 
+                                    required 
+                                />
+                                <button type="button" class="password-toggle" onclick="togglePassword()">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="password-strength">
+                                <div class="strength-meter">
+                                    <div class="strength-fill"></div>
+                                </div>
+                                <span class="strength-text">Password strength</span>
+                            </div>
+                            <div class="input-feedback"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="role" class="form-label">
+                                <i class="fas fa-user-tag"></i>
+                                Account Type
+                            </label>
+                            <div class="select-wrapper">
+                                <select name="role" id="role" class="form-select" required>
+                                    <option value="" disabled selected>Choose your role</option>
+                                    <option value="STUDENT">Student</option>
+                                    <option value="ADMIN">Administrator</option>
+                                </select>
+                                <i class="fas fa-chevron-down select-arrow"></i>
+                            </div>
+                            <div class="input-feedback"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="terms" required>
+                                <span class="checkmark"></span>
+                                <span class="checkbox-text">
+                                    I agree to the <a href="#" class="link">Terms of Service</a> and 
+                                    <a href="#" class="link">Privacy Policy</a>
+                                </span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <span class="btn-text">Create Account</span>
+                            <i class="fas fa-arrow-right btn-icon"></i>
+                            <div class="btn-loader">
+                                <div class="spinner"></div>
+                            </div>
+                        </button>
+                    </form>
+
+                    <div class="form-footer">
+                        <p class="login-prompt">
+                            Already have an account? 
+                            <a th:href="@{/login}" class="login-link">Sign in here</a>
+                        </p>
+                        
+                        <div class="divider">
+                            <span>or</span>
+                        </div>
+                        
+                        <div class="social-login">
+                            <button class="social-btn google-btn">
+                                <i class="fab fa-google"></i>
+                                Continue with Google
+                            </button>
+                            <button class="social-btn microsoft-btn">
+                                <i class="fab fa-microsoft"></i>
+                                Continue with Microsoft
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal">
+            <div class="modal-content">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3>Registration Successful!</h3>
+                <p>Your account has been created successfully. You can now log in to access your dashboard.</p>
+                <button class="modal-btn" onclick="closeModal()">Continue to Login</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Form validation and enhancement
+        const form = document.getElementById('registerForm');
+        const inputs = document.querySelectorAll('.form-input, .form-select');
+        const submitBtn = document.querySelector('.submit-btn');
+
+        // Real-time validation
+        inputs.forEach(input => {
+            input.addEventListener('input', validateField);
+            input.addEventListener('blur', validateField);
+            input.addEventListener('focus', clearFieldError);
+        });
+
+        function validateField(e) {
+            const field = e.target;
+            const value = field.value.trim();
+            const feedback = field.closest('.form-group').querySelector('.input-feedback');
+            
+            // Clear previous validation
+            field.classList.remove('error', 'success');
+            feedback.textContent = '';
+            
+            if (field.name === 'name') {
+                if (value.length < 2) {
+                    showFieldError(field, 'Name must be at least 2 characters long');
+                } else if (value.length > 50) {
+                    showFieldError(field, 'Name must be less than 50 characters');
+                } else {
+                    showFieldSuccess(field);
+                }
+            }
+            
+            if (field.name === 'email') {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(value)) {
+                    showFieldError(field, 'Please enter a valid email address');
+                } else {
+                    showFieldSuccess(field);
+                }
+            }
+            
+            if (field.name === 'password') {
+                validatePassword(field, value);
+            }
+        }
+
+        function validatePassword(field, password) {
+            const feedback = field.closest('.form-group').querySelector('.input-feedback');
+            const strengthMeter = field.closest('.form-group').querySelector('.strength-fill');
+            const strengthText = field.closest('.form-group').querySelector('.strength-text');
+            
+            let strength = 0;
+            let errors = [];
+            
+            if (password.length < 8) {
+                errors.push('At least 8 characters');
+            } else {
+                strength += 25;
+            }
+            
+            if (!/[A-Z]/.test(password)) {
+                errors.push('One uppercase letter');
+            } else {
+                strength += 25;
+            }
+            
+            if (!/[a-z]/.test(password)) {
+                errors.push('One lowercase letter');
+            } else {
+                strength += 25;
+            }
+            
+            if (!/[0-9!@#$%^&*]/.test(password)) {
+                errors.push('One number or special character');
+            } else {
+                strength += 25;
+            }
+            
+            // Update strength meter
+            strengthMeter.style.width = strength + '%';
+            strengthMeter.className = 'strength-fill';
+            
+            if (strength < 50) {
+                strengthMeter.classList.add('weak');
+                strengthText.textContent = 'Weak password';
+            } else if (strength < 75) {
+                strengthMeter.classList.add('medium');
+                strengthText.textContent = 'Medium password';
+            } else {
+                strengthMeter.classList.add('strong');
+                strengthText.textContent = 'Strong password';
+            }
+            
+            if (errors.length > 0) {
+                showFieldError(field, 'Password needs: ' + errors.join(', '));
+            } else {
+                showFieldSuccess(field);
+            }
+        }
+
+        function showFieldError(field, message) {
+            field.classList.add('error');
+            const feedback = field.closest('.form-group').querySelector('.input-feedback');
+            feedback.textContent = message;
+            feedback.className = 'input-feedback error';
+        }
+
+        function showFieldSuccess(field) {
+            field.classList.add('success');
+            const feedback = field.closest('.form-group').querySelector('.input-feedback');
+            feedback.textContent = '';
+            feedback.className = 'input-feedback';
+        }
+
+        function clearFieldError(e) {
+            const field = e.target;
+            field.classList.remove('error');
+        }
+
+        // Password toggle
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleBtn = document.querySelector('.password-toggle i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleBtn.className = 'fas fa-eye-slash';
+            } else {
+                passwordInput.type = 'password';
+                toggleBtn.className = 'fas fa-eye';
+            }
+        }
+
+        // Modal functions
+        function closeModal() {
+            document.getElementById('successModal').classList.remove('active');
+            // Redirect to login page
+            window.location.href = '/login';
+        }
+
+        // Animate elements on load
+        window.addEventListener('load', function() {
+            document.querySelector('.welcome-section').classList.add('animate');
+            document.querySelector('.form-section').classList.add('animate');
+        });
+
+        // Social login handlers (placeholder)
+        document.querySelectorAll('.social-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const provider = this.classList.contains('google-btn') ? 'Google' : 'Microsoft';
+                alert(`${provider} login integration would go here`);
+            });
+        });
+    </script>
+</body>
+</html>

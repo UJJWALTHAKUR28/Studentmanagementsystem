@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manage Subjects - Admin</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <h2>Manage Subjects</h2>
+    <form th:action="@{/admin/subjects/add}" method="post">
+        <input type="text" name="name" placeholder="Subject Name" required />
+        <button type="submit">Add Subject</button>
+    </form>
+    <table>
+        <thead>
+            <tr><th>ID</th><th>Subject Name</th><th>Actions</th></tr>
+        </thead>
+        <tbody>
+            <tr th:each="subject : ${subjects}">
+                <td th:text="${subject.id}">1</td>
+                <td th:text="${subject.name}">Subject</td>
+                <td>
+                    <a th:href="@{/admin/subjects/delete/{id}(id=${subject.id})}">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
